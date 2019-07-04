@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface EmployeeService {
 
-    void save(Employee employee);
+    void saveEmployee(Employee employee);
 
     List<Employee> findAll();
 }
