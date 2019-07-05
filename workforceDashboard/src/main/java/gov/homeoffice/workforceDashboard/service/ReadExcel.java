@@ -1,6 +1,10 @@
 package gov.homeoffice.workforceDashboard.service;
 
-import org.apache.poi.ss.usermodel.*;
+import gov.homeoffice.workforceDashboard.model.Employee;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
@@ -9,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import gov.homeoffice.workforceDashboard.model.Employee;
-
 public class ReadExcel {
 
     private static final String FILE_NAME = "/home/cdp/Downloads/ctoWorkforceSearch/src/main/resources/static/CTOAggregatedColumns_anonTestData_excel.xlsx";
@@ -18,7 +20,7 @@ public class ReadExcel {
 
     public static void buildArray() throws Exception {
 
-        List employeeList = new ArrayList();
+        List <Employee> employeeList = new ArrayList<>();
         FileInputStream excelFile = null;
 
         try {
@@ -46,15 +48,7 @@ public class ReadExcel {
                         case 2: employee.setEmployeeFirstName(cell.getRichStringCellValue().toString());
                         case 3: employee.setEmployeeSurname(cell.getRichStringCellValue().toString());
                         case 4: employee.setEmployeeFullName(cell.getRichStringCellValue().toString());
-
-//
-//                            NB: This needs to be a number type
-//                            case 5: employee.setEmployeeAdelphiNumber(cell.getNumericCellValue());
-
-                        case 5:
-                            cell.setCellType(Cell.CELL_TYPE_STRING);
-                            employee.setEmployeeAdelphiNumber(cell.getStringCellValue());
-
+                        case 5: employee.setEmployeeAdelphiNumber(cell.getNumericCellValue());
                         case 6: employee.setEmployeeEmail(cell.getRichStringCellValue().toString());
                         case 7: employee.setGradeEquivalent(cell.getRichStringCellValue().toString());
                         case 8: employee.setFunction(cell.getRichStringCellValue().toString());
