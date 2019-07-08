@@ -1,7 +1,9 @@
-package gov.homeoffice.workforceDashboard.service;
+package gov.homeoffice.ctoWorkforceSearch.Service;
 
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,25 +11,25 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import gov.homeoffice.workforceDashboard.model.Employee;
+import gov.homeoffice.ctoWorkforceSearch.Model.Employee;
 
 public class ReadExcel {
 
-    private static final String FILE_NAME = "/home/cdp/Downloads/ctoWorkforceSearch/src/main/resources/static/CTOAggregatedColumns_anonTestData_excel.xlsx";
-
+    //    NB: Excel file
+    private static final String FILE_NAME = "/home/cdp/Downloads/ctoWorkforceSearch/src/main/resources/input/CTOAggregatedColumns_anonTestData_excel.xlsx";
 
     public static void buildArray() throws Exception {
 
-        List employeeList = new ArrayList();
+        List<Employee> employeeList = new ArrayList<>();
+
         FileInputStream excelFile = null;
 
         try {
             excelFile = new FileInputStream(FILE_NAME);
-            Workbook workbook = new XSSFWorkbook(excelFile);
-            Sheet sheet = workbook.getSheetAt(0);
+            XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
+            XSSFSheet sheet = workbook.getSheetAt(0);
             Iterator<Row> iterator = sheet.iterator();
-//            NB: trying out a data formatter below
-//            DataFormatter formatter = new DataFormatter();
+            Employee employee = new Employee();
 
             if (iterator.hasNext())
                 iterator.next();
@@ -35,27 +37,40 @@ public class ReadExcel {
             while (iterator.hasNext()) {
                 Row currentRow = iterator.next();
                 Iterator<Cell> cellIterator = currentRow.iterator();
+//                NB: Further investigate Iterator<Cell>
 
                 for (int i = 0; i < 31; i++) {
-                    Employee employee = new Employee();
                     Cell cell = cellIterator.next();
+                    System.out.println("Cell Column index-----" + cell.getColumnIndex());
 
+//                        NB: Each Case statement corresponds to a column - some have added loggers for visibility
                     switch (i) {
-                        case 0: employee.setRoleRef(cell.getRichStringCellValue().toString());
+                        case 0: employee.setRoleRef(cell.getStringCellValue());
+                            System.out.println(cell.getRichStringCellValue().toString());
+                            System.out.println("Cell Column index-----" + cell.getColumnIndex() + "Row index-----" + cell.getRowIndex());
+
+
                         case 1: employee.setRoleTitle(cell.getRichStringCellValue().toString());
                         case 2: employee.setEmployeeFirstName(cell.getRichStringCellValue().toString());
                         case 3: employee.setEmployeeSurname(cell.getRichStringCellValue().toString());
                         case 4: employee.setEmployeeFullName(cell.getRichStringCellValue().toString());
 
-//
-//                            NB: This needs to be a number type
+//                            NB: previous code
 //                            case 5: employee.setEmployeeAdelphiNumber(cell.getNumericCellValue());
 
-                        case 5:
-                            cell.setCellType(Cell.CELL_TYPE_STRING);
-                            employee.setEmployeeAdelphiNumber(cell.getStringCellValue());
 
-                        case 6: employee.setEmployeeEmail(cell.getRichStringCellValue().toString());
+                        case 5: if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                            employee.setEmployeeAdelphiNumber(cell.getNumericCellValue());}
+//                                else if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
+//                                    employee.setEmployeeAdelphiNumber(Double.parseDouble(cell.getRichStringCellValue()));
+//                            }
+                            System.out.println("Case 5 CellType is " + cell.getCellTypeEnum());
+                            System.out.println("Cell Column index-----" + cell.getColumnIndex());
+
+//                            case 6: employee.setEmployeeEmail(cell.getRichStringCellValue().toString());
+                        case 6: System.out.println("Case 6 CellType is " + cell.getCellTypeEnum() + " with value= " + cell.getRichStringCellValue().toString() + "Cell Column index-----" + cell.getColumnIndex());
+
+
                         case 7: employee.setGradeEquivalent(cell.getRichStringCellValue().toString());
                         case 8: employee.setFunction(cell.getRichStringCellValue().toString());
                         case 9: employee.setBusinessUnit(cell.getRichStringCellValue().toString());
@@ -80,8 +95,10 @@ public class ReadExcel {
                         case 28: employee.setProjectedStartDateOfRole(cell.getRichStringCellValue().toString());
                         case 29: employee.setProjectedEndDateOfTerminatingRole(cell.getRichStringCellValue().toString());
 
-//                            NB: This needs to be a Double or a Float as holds decimal value
-                        case 30: employee.setfTE(cell.getNumericCellValue());
+                        case 30: if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
+                            employee.setfTE(cell.getNumericCellValue());
+                        }
+                            System.out.println("Case 30 CellType is " + cell.getCellTypeEnum());
 
 
                         case 31: employee.setdDaTOrNonDDaTResource(cell.getRichStringCellValue().toString());
@@ -99,7 +116,7 @@ public class ReadExcel {
                 excelFile.close();
             }
         }
-        System.out.print(employeeList);
+//        System.out.print(employeeList);
     }
 
 }
