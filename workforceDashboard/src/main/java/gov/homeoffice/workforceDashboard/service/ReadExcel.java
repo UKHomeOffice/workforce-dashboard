@@ -84,7 +84,7 @@ public class ReadExcel {
                     }
                     employeeList.add(employee);
                 }
-            }
+            }System.out.print(employeeList);
 
         } catch (IOException e) {
             e.printStackTrace();
