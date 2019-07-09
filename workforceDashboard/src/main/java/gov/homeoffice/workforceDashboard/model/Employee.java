@@ -27,7 +27,7 @@ public class Employee {
     private String eUExit;
     private String isThisRoleAVacancy;
     private String vacancyType;
-    private Double vacancyStage;
+    private Float vacancyStage;
     private String rechargedRoles;
     private String operationalLineManagerFirstName;
     private String operationalLineManagerSurname;
@@ -36,13 +36,13 @@ public class Employee {
     private String targetResourceType;
     private String projectedStartDateOfRole;
     private String projectedEndDateOfTerminatingRole;
-    private Double fTE;
+    private Float fTE;
     private String dDaTOrNonDDaTResource;
 
     public Employee() {
     }
 
-    public Employee(String roleRef, String roleTitle, String employeeFirstName, String employeeSurname, String employeeFullName, Integer employeeAdelphiNumber, String employeeEmail, String gradeEquivalent, String function, String businessUnit, String team, String professionCluster, String dDaTProfessionRole, String affiliatedDdaTProfessionRole, String currentResourceRollUp, String functionRollUp, String employeeCurrentPrimaryLocation, String employeeAnticipatedFutureLocation, String eUExit, String isThisRoleAVacancy, String vacancyType, Double vacancyStage, String rechargedRoles, String operationalLineManagerFirstName, String operationalLineManagerSurname, String operationalLineManagerRoleReference, String currentResourceType, String targetResourceType, String projectedStartDateOfRole, String projectedEndDateOfTerminatingRole, Double fTE, String dDaTOrNonDDaTResource) {
+    public Employee(String roleRef, String roleTitle, String employeeFirstName, String employeeSurname, String employeeFullName, Integer employeeAdelphiNumber, String employeeEmail, String gradeEquivalent, String function, String businessUnit, String team, String professionCluster, String dDaTProfessionRole, String affiliatedDdaTProfessionRole, String currentResourceRollUp, String functionRollUp, String employeeCurrentPrimaryLocation, String employeeAnticipatedFutureLocation, String eUExit, String isThisRoleAVacancy, String vacancyType, Float vacancyStage, String rechargedRoles, String operationalLineManagerFirstName, String operationalLineManagerSurname, String operationalLineManagerRoleReference, String currentResourceType, String targetResourceType, String projectedStartDateOfRole, String projectedEndDateOfTerminatingRole, Float fTE, String dDaTOrNonDDaTResource) {
         this.roleRef = roleRef;
         this.roleTitle = roleTitle;
         this.employeeFirstName = employeeFirstName;
@@ -284,11 +284,11 @@ public class Employee {
         this.vacancyType = vacancyType;
     }
 
-    public Double getVacancyStage() {
+    public Float getVacancyStage() {
         return vacancyStage;
     }
 
-    public void setVacancyStage(Double vacancyStage) {
+    public void setVacancyStage(Float vacancyStage) {
         this.vacancyStage = vacancyStage;
     }
 
@@ -356,11 +356,11 @@ public class Employee {
         this.projectedEndDateOfTerminatingRole = projectedEndDateOfTerminatingRole;
     }
 
-    public Double getfTE() {
+    public Float getfTE() {
         return fTE;
     }
 
-    public void setfTE(Double fTE) {
+    public void setfTE(Float fTE) {
         this.fTE = fTE;
     }
 

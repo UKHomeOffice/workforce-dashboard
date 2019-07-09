@@ -38,7 +38,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 
         try {
             //Locate resource to be used
-//            FileInputStream file = new FileInputStream(new File("DummyData.xlsx"));
             FileInputStream file = new FileInputStream(new File(FILE_NAME));
 
             //Create Workbook instance holding reference to .xlsx file
@@ -52,8 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
             book.setMissingCellPolicy(mcp);
 
-            org.apache.poi.ss.usermodel.Row row;
-
+            Row row;
             //Create a new employee object
             Employee employee = new Employee();
 
@@ -61,76 +59,44 @@ public class EmployeeServiceImpl implements EmployeeService{
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 row = sheet.getRow(i);
 
-                String roleRef = row.getCell(0).getStringCellValue();
-                String roleTitle = row.getCell(1).getStringCellValue();
-                String employeeFirstName = row.getCell(2).getStringCellValue();
-                String employeeSurname = row.getCell(3).getStringCellValue();
-                String employeeFullName = row.getCell(4).getStringCellValue();
-                Integer employeeAdelphiNumber = (int)Math.round(row.getCell(5).getNumericCellValue());
-                String employeeEmail = row.getCell(6).getStringCellValue();
-                String gradeEquivalent = row.getCell(7).getStringCellValue();
-                String function = row.getCell(8).getStringCellValue();
-                String businessUnit = row.getCell(9).getStringCellValue();
-                String team = row.getCell(10).getStringCellValue();
-                String professionCluster = row.getCell(11).getStringCellValue();
-                String dDaTProfessionRole = row.getCell(12).getStringCellValue();
-                String affiliatedDdaTProfessionRole = row.getCell(13).getStringCellValue();
-                String currentResourceRollUp = row.getCell(14).getStringCellValue();
-                String functionRollUp = row.getCell(15).getStringCellValue();
-                String employeeCurrentPrimaryLocation = row.getCell(16).getStringCellValue();
-                String employeeAnticipatedFutureLocation = row.getCell(17).getStringCellValue();
-                String eUExit = row.getCell(18).getStringCellValue();
-                String isThisRoleAVacancy = row.getCell(19).getStringCellValue();
-                String vacancyType = row.getCell(20).getStringCellValue();
-                Double vacancyStage = row.getCell(21).getNumericCellValue();
-                String rechargedRoles = row.getCell(22).getStringCellValue();
-                String operationalLineManagerFirstName = row.getCell(23).getStringCellValue();
-                String operationalLineManagerSurname = row.getCell(24).getStringCellValue();
-                String operationalLineManagerRoleReference = row.getCell(25).getStringCellValue();
-                String currentResourceType = row.getCell(26).getStringCellValue();
-                String targetResourceType = row.getCell(27).getStringCellValue();
-                String projectedStartDateOfRole = row.getCell(28).getStringCellValue();
-                String projectedEndDateOfTerminatingRole = row.getCell(29).getStringCellValue();
-                Double fTE = row.getCell(30).getNumericCellValue();
-                String dDaTOrNonDDaTResource = row.getCell(31).getStringCellValue();
-
-                employee.setRoleRef(roleRef);
-                employee.setRoleTitle(roleTitle);
-                employee.setEmployeeFirstName(employeeFirstName);
-                employee.setEmployeeSurname(employeeSurname);
-                employee.setEmployeeFullName(employeeFullName);
-                employee.setEmployeeAdelphiNumber(employeeAdelphiNumber);
-                employee.setEmployeeEmail(employeeEmail);
-                employee.setGradeEquivalent(gradeEquivalent);
-                employee.setFunction(function);
-                employee.setBusinessUnit(businessUnit);
-                employee.setTeam(team);
-                employee.setProfessionCluster(professionCluster);
-                employee.setdDaTProfessionRole(dDaTProfessionRole);
-                employee.setAffiliatedDdaTProfessionRole(affiliatedDdaTProfessionRole);
-                employee.setCurrentResourceRollUp(currentResourceRollUp);
-                employee.setFunctionRollUp(functionRollUp);
-                employee.setEmployeeCurrentPrimaryLocation(employeeCurrentPrimaryLocation);
-                employee.setEmployeeAnticipatedFutureLocation(employeeAnticipatedFutureLocation);
-                employee.seteUExit(eUExit);
-                employee.setIsThisRoleAVacancy(isThisRoleAVacancy);
-                employee.setVacancyType(vacancyType);
-                employee.setVacancyStage(vacancyStage);
-                employee.setRechargedRoles(rechargedRoles);
-                employee.setOperationalLineManagerFirstName(operationalLineManagerFirstName);
-                employee.setOperationalLineManagerSurname(operationalLineManagerSurname);
-                employee.setOperationalLineManagerRoleReference(operationalLineManagerRoleReference);
-                employee.setCurrentResourceType(currentResourceType);
-                employee.setTargetResourceType(targetResourceType);
-                employee.setProjectedStartDateOfRole(projectedStartDateOfRole);
-                employee.setProjectedEndDateOfTerminatingRole(projectedEndDateOfTerminatingRole);
-                employee.setfTE(fTE);
-                employee.setdDaTOrNonDDaTResource(dDaTOrNonDDaTResource);
+                employee.setRoleRef(row.getCell(0).getStringCellValue());
+                employee.setRoleTitle(row.getCell(1).getStringCellValue());
+                employee.setEmployeeFirstName(row.getCell(2).getStringCellValue());
+                employee.setEmployeeSurname(row.getCell(3).getStringCellValue());
+                employee.setEmployeeFullName(row.getCell(4).getStringCellValue());
+                employee.setEmployeeAdelphiNumber((int)Math.round(row.getCell(5).getNumericCellValue()));
+                employee.setEmployeeEmail(row.getCell(6).getStringCellValue());
+                employee.setGradeEquivalent(row.getCell(7).getStringCellValue());
+                employee.setFunction(row.getCell(8).getStringCellValue());
+                employee.setBusinessUnit(row.getCell(9).getStringCellValue());
+                employee.setTeam(row.getCell(10).getStringCellValue());
+                employee.setProfessionCluster(row.getCell(11).getStringCellValue());
+                employee.setdDaTProfessionRole(row.getCell(12).getStringCellValue());
+                employee.setAffiliatedDdaTProfessionRole(row.getCell(13).getStringCellValue());
+                employee.setCurrentResourceRollUp(row.getCell(14).getStringCellValue());
+                employee.setFunctionRollUp(row.getCell(15).getStringCellValue());
+                employee.setEmployeeCurrentPrimaryLocation(row.getCell(16).getStringCellValue());
+                employee.setEmployeeAnticipatedFutureLocation(row.getCell(17).getStringCellValue());
+                employee.seteUExit(row.getCell(18).getStringCellValue());
+                employee.setIsThisRoleAVacancy(row.getCell(19).getStringCellValue());
+                employee.setVacancyType(row.getCell(20).getStringCellValue());
+                employee.setVacancyStage((float)Math.round(row.getCell(21).getNumericCellValue()));
+                employee.setRechargedRoles(row.getCell(22).getStringCellValue());
+                employee.setOperationalLineManagerFirstName(row.getCell(23).getStringCellValue());
+                employee.setOperationalLineManagerSurname(row.getCell(24).getStringCellValue());
+                employee.setOperationalLineManagerRoleReference(row.getCell(25).getStringCellValue());
+                employee.setCurrentResourceType(row.getCell(26).getStringCellValue());
+                employee.setTargetResourceType(row.getCell(27).getStringCellValue());
+                employee.setProjectedStartDateOfRole(row.getCell(28).getStringCellValue());
+                employee.setProjectedEndDateOfTerminatingRole(row.getCell(29).getStringCellValue());
+                employee.setfTE((float)Math.round(row.getCell(30).getNumericCellValue()));
+                employee.setdDaTOrNonDDaTResource(row.getCell(31).getStringCellValue());
 
                 System.out.println("Employee record saved--" + employee.toString());
                 saveEmployee(employee);
 
             } file.close();
+              book.close();
 
 
         } catch (Exception e) {
