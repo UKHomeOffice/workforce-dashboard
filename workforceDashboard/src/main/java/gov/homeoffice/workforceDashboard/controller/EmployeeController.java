@@ -22,7 +22,7 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    private static String UPLOADED_FILE = "FILE_PATH";
+    private static String UPLOADED_FILE = "";
 
     @GetMapping("/")
     public String getIntro() {
@@ -39,20 +39,28 @@ public class EmployeeController {
                                    RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Please select a file to upload. Click here to retry a href");
+            redirectAttributes.addFlashAttribute("message", "Please select a file to upload!");
             return "redirect:/fileUploadStatus";
         }
 
         try {
 
-            // Get the file and save it somewhere
+            // Get the file and save it into classpath
             byte[] bytes = file.getBytes();
             System.out.println(UPLOADED_FILE + file.getOriginalFilename());
             Path path = Paths.get(UPLOADED_FILE + file.getOriginalFilename());
             Files.write(path, bytes);
 
-            redirectAttributes.addFlashAttribute("message",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
+            if(file.isEmpty()) {
+
+                redirectAttributes.addFlashAttribute("message",
+                        "There has been a problem loading this file. Please try again");
+
+            } else {
+
+                redirectAttributes.addFlashAttribute("message",
+                        file.getOriginalFilename() + " has been uploaded successfully");
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
