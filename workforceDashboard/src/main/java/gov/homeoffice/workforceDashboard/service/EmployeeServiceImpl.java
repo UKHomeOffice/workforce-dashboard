@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public void excelReader() {
 
-        final String FILE_NAME = "/home/cdp/JavaProjects/zDashboard/zdashboard/src/main/resources/DummyData.xlsx";
+        final String FILE_NAME = "DummyData.xlsx";
 
 
         try {
@@ -129,6 +129,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
                 System.out.println("Employee record saved--" + employee.toString());
                 saveEmployee(employee);
+
             } file.close();
 
 

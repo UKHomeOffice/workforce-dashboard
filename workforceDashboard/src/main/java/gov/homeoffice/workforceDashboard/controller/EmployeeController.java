@@ -22,7 +22,7 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    private static String UPLOADED_FILE = "/home/cdp/JavaProjects/zDashboard/zdashboard/src/main/resources/";
+    private static String UPLOADED_FILE = "FILE_PATH";
 
     @GetMapping("/")
     public String getIntro() {
