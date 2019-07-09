@@ -11,7 +11,7 @@ public class Employee {
     private String employeeSurname;
     @Id
     private String employeeFullName;
-    private Double employeeAdelphiNumber;
+    private Integer employeeAdelphiNumber;
     private String employeeEmail;
     private String gradeEquivalent;
     private String function;
@@ -42,7 +42,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String roleRef, String roleTitle, String employeeFirstName, String employeeSurname, String employeeFullName, Double employeeAdelphiNumber, String employeeEmail, String gradeEquivalent, String function, String businessUnit, String team, String professionCluster, String dDaTProfessionRole, String affiliatedDdaTProfessionRole, String currentResourceRollUp, String functionRollUp, String employeeCurrentPrimaryLocation, String employeeAnticipatedFutureLocation, String eUExit, String isThisRoleAVacancy, String vacancyType, Double vacancyStage, String rechargedRoles, String operationalLineManagerFirstName, String operationalLineManagerSurname, String operationalLineManagerRoleReference, String currentResourceType, String targetResourceType, String projectedStartDateOfRole, String projectedEndDateOfTerminatingRole, Double fTE, String dDaTOrNonDDaTResource) {
+    public Employee(String roleRef, String roleTitle, String employeeFirstName, String employeeSurname, String employeeFullName, Integer employeeAdelphiNumber, String employeeEmail, String gradeEquivalent, String function, String businessUnit, String team, String professionCluster, String dDaTProfessionRole, String affiliatedDdaTProfessionRole, String currentResourceRollUp, String functionRollUp, String employeeCurrentPrimaryLocation, String employeeAnticipatedFutureLocation, String eUExit, String isThisRoleAVacancy, String vacancyType, Double vacancyStage, String rechargedRoles, String operationalLineManagerFirstName, String operationalLineManagerSurname, String operationalLineManagerRoleReference, String currentResourceType, String targetResourceType, String projectedStartDateOfRole, String projectedEndDateOfTerminatingRole, Double fTE, String dDaTOrNonDDaTResource) {
         this.roleRef = roleRef;
         this.roleTitle = roleTitle;
         this.employeeFirstName = employeeFirstName;
@@ -156,11 +156,11 @@ public class Employee {
         this.employeeFullName = employeeFullName;
     }
 
-    public Double getEmployeeAdelphiNumber() {
+    public Integer getEmployeeAdelphiNumber() {
         return employeeAdelphiNumber;
     }
 
-    public void setEmployeeAdelphiNumber(Double employeeAdelphiNumber) {
+    public void setEmployeeAdelphiNumber(Integer employeeAdelphiNumber) {
         this.employeeAdelphiNumber = employeeAdelphiNumber;
     }
 

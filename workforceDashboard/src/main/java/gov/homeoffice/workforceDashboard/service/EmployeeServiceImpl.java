@@ -66,7 +66,7 @@ public class EmployeeServiceImpl implements EmployeeService{
                 String employeeFirstName = row.getCell(2).getStringCellValue();
                 String employeeSurname = row.getCell(3).getStringCellValue();
                 String employeeFullName = row.getCell(4).getStringCellValue();
-                Double employeeAdelphiNumber = row.getCell(5).getNumericCellValue();
+                Integer employeeAdelphiNumber = (int)Math.round(row.getCell(5).getNumericCellValue());
                 String employeeEmail = row.getCell(6).getStringCellValue();
                 String gradeEquivalent = row.getCell(7).getStringCellValue();
                 String function = row.getCell(8).getStringCellValue();
