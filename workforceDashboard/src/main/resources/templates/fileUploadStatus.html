@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>File Status</title>
+</head>
+<body>
+<h1> Workforce Dashboard</h1>
+<h1>File Upload Status</h1>
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+<h2>What would you like to do?</h2>
+<a href="/list">View full employee list</a><br>
+<a href="/welcome">Upload a file.</a>
+
+</body>
+</html>

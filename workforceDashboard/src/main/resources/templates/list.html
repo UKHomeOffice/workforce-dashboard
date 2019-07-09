@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/list.css}"/>
+
+    <title>Dashboard Data</title>
+
+</head>
+<body>
+<div class="container-fluid">
+    <h1 class="display-2 text-center my-3">WorkForce Dashboard</h1>
+    <h2 class="display-4 text-center mb-4">Employee List - All Employees</h2>
+    <table class="table table-hover">
+        <thead class="bg-info">
+        <tr >
+            <th>Role Ref</th>
+            <th>Role Title</th>
+            <th>Employee First Name</th>
+            <th>Employee Surname</th>
+            <th>Employee Full Name</th>
+            <th>Employee Adelphi Number</th>
+            <th>Employee Email</th>
+            <th>Grade Equivalent</th>
+            <th>Function</th>
+            <th>Business Unit</th>
+            <th>Team</th>
+            <th>Profession Cluster</th>
+            <th>DDaT Professional Role</th>
+            <th>Affiliated DDaT Professional Role</th>
+            <th>Current Resource Roll Up</th>
+            <th>Function Roll Up</th>
+            <th>Employee Current Primary Location</th>
+            <th>Employee Anticipated Future Location</th>
+            <th>Eu Exit</th>
+            <th>Vacant Role</th>
+            <th>Vacancy Type</th>
+            <th>Vacancy Stage</th>
+            <th>Recharged Roles</th>
+            <th>Operational LM First Name</th>
+            <th>Operational LM Surname</th>
+            <th>Operational LM Role Ref</th>
+            <th>Current Resource Type</th>
+            <th>Target Resource Type</th>
+            <th>Projected Start Date of Role</th>
+            <th>Projected End Date of Role</th>
+            <th>FTE</th>
+            <th>DDaT or Non DDaT Resource</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${lists.empty}">
+            <td colspan="4">No Employee Data Available</td>
+        </tr>
+        <tr th:each="person : ${lists}">
+            <td><span th:text="${person.roleRef}"> Role Ref </span></td>
+            <td><span th:text="${person.roleTitle}"> Role Title </span></td>
+            <td><span th:text="${person.employeeFirstName}">Employee First Name</span></td>
+            <td><span th:text="${person.employeeSurname}">Employee Surname</span></td>
+            <td><span th:text="${person.employeeFullName}">Employee Full Name</span></td>
+            <td><span th:text="${person.employeeAdelphiNumber}">Employee Adelphi Number</span></td>
+            <td><span th:text="${person.employeeEmail}">Employee Email</span></td>
+            <td><span th:text="${person.gradeEquivalent}">Grade Equivalent</span></td>
+            <td><span th:text="${person.function}">Function</span></td>
+            <td><span th:text="${person.businessUnit}">Business Unit</span></td>
+            <td><span th:text="${person.team}">Team</span></td>
+            <td><span th:text="${person.professionCluster}">Profession Cluster</span></td>
+            <td><span th:text="${person.dDaTProfessionRole}">DDaT Professional Role</span></td>
+            <td><span th:text="${person.affiliatedDdaTProfessionRole}">Affiliated DDaT Professional Role</span></td>
+            <td><span th:text="${person.currentResourceRollUp}">Current Resource Roll Up</span></td>
+            <td><span th:text="${person.functionRollUp}">Function Roll Up</span></td>
+            <td><span th:text="${person.employeeCurrentPrimaryLocation}">Employee Current Primary Location</span></td>
+            <td><span th:text="${person.employeeAnticipatedFutureLocation}">Employee Anticipated Future Location</span></td>
+            <td><span th:text="${person.eUExit}">Eu Exit</span></td>
+            <td><span th:text="${person.isThisRoleAVacancy}">Vacant Role</span></td>
+            <td><span th:text="${person.vacancyType}">Vacancy Type</span></td>
+            <td><span th:text="${person.vacancyStage}">Vacancy Stage</span></td>
+            <td><span th:text="${person.rechargedRoles}">Recharged Roles</span></td>
+            <td><span th:text="${person.operationalLineManagerFirstName}">Operational LM First Name</span></td>
+            <td><span th:text="${person.operationalLineManagerSurname}">Operational LM Surname</span></td>
+            <td><span th:text="${person.operationalLineManagerRoleReference}">Operational LM Role Ref</span></td>
+            <td><span th:text="${person.currentResourceType}">Current Resource Type</span></td>
+            <td><span th:text="${person.targetResourceType}">Target Resource Type</span></td>
+            <td><span th:text="${person.projectedStartDateOfRole}">Projected Start Date of Role</span></td>
+            <td><span th:text="${person.projectedEndDateOfTerminatingRole}">Projected End Date of Role</span></td>
+            <td><span th:text="${person.fTE}">FTE</span></td>
+            <td><span th:text="${person.dDaTOrNonDDaTResource}">DDaT or Non DDaT Resource</span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
