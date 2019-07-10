@@ -1,6 +1,7 @@
 package gov.homeoffice.workforceDashboard.controller;
 
 import gov.homeoffice.workforceDashboard.service.EmployeeService;
+import gov.homeoffice.workforceDashboard.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,18 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 @Controller
 public class EmployeeController {
+
+    private final UploadService uploadService;
 
     @Autowired
     EmployeeService employeeService;
 
-    private static String UPLOADED_FILE = "";
+    @Autowired
+    public EmployeeController (UploadService uploadService) {
+        this.uploadService = uploadService;
+    }
 
     @GetMapping("/")
     public String getIntro() {
@@ -34,7 +35,7 @@ public class EmployeeController {
         return "welcome";
     }
 
-    @RequestMapping("/welcome") // //new annotation since 4.3
+    @RequestMapping("/welcome")
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 
@@ -45,11 +46,7 @@ public class EmployeeController {
 
         try {
 
-            // Get the file and save it into classpath
-            byte[] bytes = file.getBytes();
-            System.out.println(UPLOADED_FILE + file.getOriginalFilename());
-            Path path = Paths.get(UPLOADED_FILE + file.getOriginalFilename());
-            Files.write(path, bytes);
+            uploadService.uploadFile(file);
 
             if(file.isEmpty()) {
 
@@ -62,7 +59,7 @@ public class EmployeeController {
                         file.getOriginalFilename() + " has been uploaded successfully");
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

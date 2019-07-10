@@ -19,6 +19,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     EmployeeRepository employeeRepository;
 
+    @Autowired
+    UploadService uploadService;
+
 
     @Override
     public void saveEmployee (Employee employee){
@@ -33,8 +36,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public void excelReader() {
 
-        final String FILE_NAME = "DummyData.xlsx";
 
+        final String FILE_NAME = uploadService.getResourceName();
 
         try {
             //Locate resource to be used
