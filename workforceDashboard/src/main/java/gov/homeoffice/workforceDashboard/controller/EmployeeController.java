@@ -73,6 +73,7 @@ public class EmployeeController {
 
     @RequestMapping(value= "list", method= RequestMethod.GET)
     public String getEmployeeList(Model model) {
+
         employeeService.excelReader();
         model.addAttribute("lists", employeeService.findAll());
         return "list";

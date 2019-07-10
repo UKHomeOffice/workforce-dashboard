@@ -33,9 +33,17 @@ public class UploadServiceImpl implements UploadService {
     @Override
     public String getResourceName() {
 
-        Paths.get(fileName);
+        try {
+
+            Paths.get(fileName);
+            if (fileName.isEmpty()) {
+                return "";
+            } else {
                 return fileName;
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        } return fileName;
+
     }
-
-
 }
