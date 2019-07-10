@@ -10,5 +10,4 @@ public class WorkforceDashboardApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(WorkforceDashboardApplication.class, args);
 	}
-
 }

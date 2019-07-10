@@ -45,14 +45,11 @@ public class EmployeeController {
         }
 
         try {
-
             uploadService.uploadFile(file);
 
             if(file.isEmpty()) {
-
                 redirectAttributes.addFlashAttribute("message",
                         "There has been a problem loading this file. Please try again");
-
             } else {
 
                 redirectAttributes.addFlashAttribute("message",
