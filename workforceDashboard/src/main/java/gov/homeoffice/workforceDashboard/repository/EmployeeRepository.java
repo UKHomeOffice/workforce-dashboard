@@ -8,10 +8,8 @@ import java.util.Collection;
 import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employee, String> {
-
     //  WS - The below is the code to return a sorted list by Function
     @Query("SELECT a FROM Employee a ORDER BY a.function ASC, a.team ASC, a.employeeFullName ASC")
     List<Employee> findByFunction();
-
 }
 

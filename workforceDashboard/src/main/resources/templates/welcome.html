@@ -12,6 +12,9 @@
     <input type="file" name="file"> <br/><br/>
     <button type="submit">Submit</button>
 </form>
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
 
 </body>
 </html>

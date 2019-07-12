@@ -1,7 +1,7 @@
 package gov.homeoffice.workforceDashboard.controller;
 
 import gov.homeoffice.workforceDashboard.service.EmployeeService;
-import net.bytebuddy.TypeCache;
+import gov.homeoffice.workforceDashboard.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 @Controller
 public class EmployeeController {
+
+    private final UploadService uploadService;
 
     @Autowired
     EmployeeService employeeService;
 
-    private static String UPLOADED_FILE = "";
+    @Autowired
+    public EmployeeController (UploadService uploadService) {
+        this.uploadService = uploadService;
+    }
 
     @GetMapping("/")
     public String getIntro() {
@@ -33,38 +33,42 @@ public class EmployeeController {
         return "welcome";
     }
 
-    @RequestMapping("/welcome") // //new annotation since 4.3
+    @RequestMapping("/welcome")
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload!");
-            return "redirect:/fileUploadStatus";
+            return "redirect:/welcome";
         }
 
-        try {
+        String extension;
+        String fileName;
+        fileName = file.getOriginalFilename();
+        extension = fileName.substring(fileName.lastIndexOf('.')+ 1);
 
-            // Get the file and save it into classpath
-            byte[] bytes = file.getBytes();
-            System.out.println(UPLOADED_FILE + file.getOriginalFilename());
-            Path path = Paths.get(UPLOADED_FILE + file.getOriginalFilename());
-            Files.write(path, bytes);
+        //add file size error
+        if (extension.equals("xlsx")) {
 
-            if(file.isEmpty()) {
+            try {
+                uploadService.uploadFile(file);
 
-                redirectAttributes.addFlashAttribute("message",
-                        "There has been a problem loading this file. Please try again");
+                if (file.isEmpty()) {
+                    redirectAttributes.addFlashAttribute("message",
+                            "Error! There has been a problem loading this file. Please retry upload");
+                } else {
 
-            } else {
-
-                redirectAttributes.addFlashAttribute("message",
-                        file.getOriginalFilename() + " has been uploaded successfully");
+                    redirectAttributes.addFlashAttribute("message",
+                            file.getOriginalFilename() + " has been uploaded successfully");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            redirectAttributes.addFlashAttribute("message",
+                     " Error! " + file.getOriginalFilename() + " is an incompatible file type. Please check file details and retry upload");
+            return "redirect:/welcome";
         }
-
         return "redirect:/fileUploadStatus";
     }
 
