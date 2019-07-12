@@ -2,6 +2,7 @@ package gov.homeoffice.workforceDashboard.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -13,10 +14,6 @@ public class UploadServiceImpl implements UploadService {
 
     private String fileName;
     private InputStream fis;
-
-    //inappropriate file types
-    //inappropriate amount of columns
-
 
     @Override
     public void uploadFile(MultipartFile file) {
@@ -39,6 +36,7 @@ public class UploadServiceImpl implements UploadService {
         }
     }
 
+
     @Override
     public String getResourceName() {
         try {
@@ -54,3 +52,4 @@ public class UploadServiceImpl implements UploadService {
         return fileName;
     }
 }
+

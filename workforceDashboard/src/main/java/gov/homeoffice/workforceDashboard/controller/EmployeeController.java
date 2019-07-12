@@ -41,25 +41,36 @@ public class EmployeeController {
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload!");
-            return "redirect:/fileUploadStatus";
+            return "redirect:/welcome";
         }
 
-        try {
-            uploadService.uploadFile(file);
+        String extension;
+        String fileName;
+        fileName = file.getOriginalFilename();
+        extension = fileName.substring(fileName.lastIndexOf('.')+ 1);
 
-            if(file.isEmpty()) {
-                redirectAttributes.addFlashAttribute("message",
-                        "There has been a problem loading this file. Please try again");
-            } else {
+        //add file size error
+        if (extension.equals("xlsx")) {
 
-                redirectAttributes.addFlashAttribute("message",
-                        file.getOriginalFilename() + " has been uploaded successfully");
+            try {
+                uploadService.uploadFile(file);
+
+                if (file.isEmpty()) {
+                    redirectAttributes.addFlashAttribute("message",
+                            "Error! There has been a problem loading this file. Please retry upload");
+                } else {
+
+                    redirectAttributes.addFlashAttribute("message",
+                            file.getOriginalFilename() + " has been uploaded successfully");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            redirectAttributes.addFlashAttribute("message",
+                     " Error! " + file.getOriginalFilename() + " is an incompatible file type. Please check file details and retry upload");
+            return "redirect:/welcome";
         }
-
         return "redirect:/fileUploadStatus";
     }
 
@@ -70,9 +81,9 @@ public class EmployeeController {
 
     @RequestMapping(value= "list", method= RequestMethod.GET)
     public String getEmployeeList(Model model) {
-
         employeeService.excelReader();
         model.addAttribute("lists", employeeService.findAll());
         return "list";
     }
+
 }
