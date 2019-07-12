@@ -33,6 +33,8 @@ public class EmployeeServiceImpl implements EmployeeService{
         return employeeRepository.findAll();
     }
 
+    public List<Employee> findByFunction() {return employeeRepository.findByFunction();}
+
     @Override
     public void excelReader() {
 

@@ -11,4 +11,6 @@ public interface EmployeeService {
     List<Employee> findAll();
 
     void excelReader();
+
+    List<Employee>findByFunction();
 }

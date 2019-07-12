@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/list.css}"/>
+
+    <title>Dashboard Data</title>
+
+</head>
+<body>
+<div class="container-fluid">
+    <h1 class="display-2 text-center my-3">WorkForce Dashboard</h1>
+    <h2 class="display-4 text-center mb-4">Employee List - Sorted by Function view</h2>
+    <table class="table table-hover">
+        <thead class="bg-info">
+        <tr >
+            <th>Function</th>
+            <th>Role Title</th>
+            <th>Employee Full Name</th>
+            <th>Employee Email</th>
+            <th>Grade Equivalent</th>
+            <th>Team</th>
+            <th>DDaT Professional Role</th>
+            <th>Location</th>
+            <th>Operational LM Full Name</th>
+
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:if="${lists.empty}">
+            <td colspan="4">No Employee Data Available - Please go back and Upload a File first</td>
+        </tr>
+        <tr th:each="person : ${lists}">
+            <td><span th:text="${person.function}">Function</span></td>
+            <td><span th:text="${person.roleTitle}"> Role Title </span></td>
+            <td><span th:text="${person.employeeFullName}">Employee Full Name</span></td>
+            <td><span th:text="${person.employeeEmail}">Employee Email</span></td>
+            <td><span th:text="${person.gradeEquivalent}">Grade Equivalent</span></td>
+            <td><span th:text="${person.team}">Team</span></td>
+            <td><span th:text="${person.dDaTProfessionRole}">Validated Professional Role</span></td>
+            <td><span th:text="${person.employeeCurrentPrimaryLocation}">Location</span></td>
+            <td><span th:text="${person.operationalLineManagerFirstName + ' ' + person.operationalLineManagerSurname}">/td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>
