@@ -19,7 +19,6 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     EmployeeRepository employeeRepository;
 
-
     @Override
     public void saveEmployee (Employee employee){
         employeeRepository.save(employee);
@@ -29,6 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     public List<Employee> findAll () {
         return employeeRepository.findAll();
     }
+
+    public List<Employee> findByFunction() {return employeeRepository.findByFunction();}
 
     @Override
     public void excelReader() {

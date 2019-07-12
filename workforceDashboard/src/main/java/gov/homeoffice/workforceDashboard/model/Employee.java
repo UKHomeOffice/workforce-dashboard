@@ -2,8 +2,11 @@ package gov.homeoffice.workforceDashboard.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+//WS - Do we need to declare a @Table?
+//@Table(name = "workforce")
 public class Employee {
     private String roleRef;
     private String roleTitle;
