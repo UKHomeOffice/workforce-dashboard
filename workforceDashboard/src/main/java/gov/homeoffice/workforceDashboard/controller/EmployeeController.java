@@ -36,7 +36,7 @@ public class EmployeeController {
                                    RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Please select a file to upload!");
+            redirectAttributes.addFlashAttribute("message", "Error! No file found. Select a file to upload!");
             return "redirect:/welcome";
         }
 
@@ -53,7 +53,7 @@ public class EmployeeController {
 
                 if (file.isEmpty()) {
                     redirectAttributes.addFlashAttribute("message",
-                            "Error! There has been a problem loading this file. Please retry upload");
+                            "Error! There has been a problem loading file. Retry upload");
                 } else {
 
                     redirectAttributes.addFlashAttribute("message",
