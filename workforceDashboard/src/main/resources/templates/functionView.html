@@ -12,7 +12,7 @@
 <body>
 <div class="container-fluid">
     <h1 class="display-2 text-center my-3">WorkForce Dashboard</h1>
-    <h2 class="display-4 text-center mb-4">Employee List - Function View</h2>
+    <h2 class="display-4 text-center mb-4">Employee List - Sorted by Function view</h2>
     <table class="table table-hover">
         <thead class="bg-info">
         <tr >
@@ -23,16 +23,15 @@
             <th>Grade Equivalent</th>
             <th>Team</th>
             <th>DDaT Professional Role</th>
-            <th>Employee Current Primary Location</th>
-            <th>Operational LM First Name</th>
-            <th>Operational LM Surname</th>
+            <th>Location</th>
+            <th>Operational LM Full Name</th>
 
         </tr>
         </thead>
 
         <tbody>
         <tr th:if="${lists.empty}">
-            <td colspan="4">No Employee Data Available</td>
+            <td colspan="4">No Employee Data Available - Please go back and Upload a File first</td>
         </tr>
         <tr th:each="person : ${lists}">
             <td><span th:text="${person.function}">Function</span></td>
@@ -41,10 +40,9 @@
             <td><span th:text="${person.employeeEmail}">Employee Email</span></td>
             <td><span th:text="${person.gradeEquivalent}">Grade Equivalent</span></td>
             <td><span th:text="${person.team}">Team</span></td>
-            <td><span th:text="${person.dDaTProfessionRole}">Validated Professiona Role</span></td>
+            <td><span th:text="${person.dDaTProfessionRole}">Validated Professional Role</span></td>
             <td><span th:text="${person.employeeCurrentPrimaryLocation}">Location</span></td>
-            <td><span th:text="${person.operationalLineManagerFirstName}">Adelphi supervisor First Name</span></td>
-            <td><span th:text="${person.operationalLineManagerSurname}">Adelphi supervisor Surname</span></td>
+            <td><span th:text="${person.operationalLineManagerFirstName + ' ' + person.operationalLineManagerSurname}">/td>
         </tr>
         </tbody>
     </table>
