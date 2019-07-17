@@ -17,7 +17,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -51,8 +52,23 @@ public class EmployeeControllerTest {
 
         Employee employee = new Employee("CTF159",	"Developer", "Mike", "Adams", "Mike Adams",	123458,	"foo456@bar.gov.uk", "HEO",	"Police and Public Protection Technology",	"Operations",	"Software Engineering Group",	"Technical", 	"Software Developer",	"Engineering",	"Contractor",	"Function2", 	"Liverpool",	"Glasgow", "Yes", "No","",0.2f,"", "Joyce",	"Parker",	"Foo11",	"Contractor",	"Civil Servant",	"01/10/19",	"01/03/21",	0.5f,	"DdaT");
         employeeService.saveEmployee(employee);
+        Employee employee1 = new Employee("CTF159",	"Developer", "Mike1", "Adams", "Mike Adams",	123458,	"foo456@bar.gov.uk", "HEO",	"Police and Public Protection Technology",	"Operations",	"Software Engineering Group",	"Technical", 	"Software Developer",	"Engineering",	"Contractor",	"Function2", 	"Liverpool",	"Glasgow", "Yes", "No","",0.2f,"", "Joyce",	"Parker",	"Foo11",	"Contractor",	"Civil Servant",	"01/10/19",	"01/03/21",	0.5f,	"DdaT");
+        employeeService.saveEmployee(employee1);
+        Employee employee2 = new Employee("CTF159",	"Developer", "Mike2", "Adams", "Mike Adams",	123458,	"foo456@bar.gov.uk", "HEO",	"Police and Public Protection Technology",	"Operations",	"Software Engineering Group",	"Technical", 	"Software Developer",	"Engineering",	"Contractor",	"Function2", 	"Liverpool",	"Glasgow", "Yes", "No","",0.2f,"", "Joyce",	"Parker",	"Foo11",	"Contractor",	"Civil Servant",	"01/10/19",	"01/03/21",	0.5f,	"DdaT");
+        employeeService.saveEmployee(employee2);
+        System.out.println("Details for employee " + employee);
+        System.out.println("Details for employee " + employee1);
+        System.out.println("Details for employee " + employee2);
 
-        when(employeeService.findAll()).thenReturn(List<Employee>);
+        System.out.println("Details for employee service " + employeeService.findAll());
+
+        List<Employee> employees = employeeService.findAll();
+        System.out.println("Details for employees " + employees);
+
+        List<Employee> employees1 = employeeRepository.findAll();
+        System.out.println("Details for employee1 " + employees1);
+
+        when(employeeService.findAll()).thenReturn(employees);
 
         mockMvc.perform(post("/list")
                 .accept(MediaType.APPLICATION_JSON))
@@ -60,6 +76,8 @@ public class EmployeeControllerTest {
 
                 verify(employeeService,times(1)).findAll();
                 //assert statement here
-
+                assertEquals(employees.size(), is(equals(3)));
+                //Why is assertThat unavailable as option
+                //assertThat(employees.size(), is(equals3)));
     }
 }
