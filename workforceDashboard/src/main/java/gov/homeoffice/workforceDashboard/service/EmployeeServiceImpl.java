@@ -23,6 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     UploadService uploadService;
 
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    }
+
     @Override
     public void saveEmployee (Employee employee){
         employeeRepository.save(employee);
