@@ -3,25 +3,23 @@ package gov.homeoffice.workforceDashboard.controller;
 import gov.homeoffice.workforceDashboard.service.EmployeeService;
 import gov.homeoffice.workforceDashboard.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class EmployeeController {
 
-    private final UploadService uploadService;
-
     @Autowired
     EmployeeService employeeService;
 
     @Autowired
-    public EmployeeController (UploadService uploadService) {
-        this.uploadService = uploadService;
-    }
+    UploadService uploadService;
 
     @GetMapping("/")
     public String getIntro() {
@@ -38,7 +36,7 @@ public class EmployeeController {
                                    RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
-            redirectAttributes.addFlashAttribute("message", "Please select a file to upload!");
+            redirectAttributes.addFlashAttribute("message", "Error! No file found. Select a file to upload!");
             return "redirect:/welcome";
         }
 
@@ -55,7 +53,7 @@ public class EmployeeController {
 
                 if (file.isEmpty()) {
                     redirectAttributes.addFlashAttribute("message",
-                            "Error! There has been a problem loading this file. Please retry upload");
+                            "Error! There has been a problem loading file. Retry upload");
                 } else {
 
                     redirectAttributes.addFlashAttribute("message",
