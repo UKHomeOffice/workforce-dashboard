@@ -44,8 +44,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 //    WS WIP Below line is meant to pass the selected option from selectColumn form
 
     public List<Employee> findBySelection(String selection) {
+        System.out.println("EmployeeServiceImpl findBySelection = " + selection);
         return employeeRepository.findBySelection(selection);
     }
+
+
 
     @Override
     public void excelReader() {

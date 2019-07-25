@@ -113,8 +113,11 @@ public class EmployeeController {
 
         String selection = request.getParameter("selectColumn");
 
-        model.addAttribute("lists", employeeService.findBySelection());
+        model.addAttribute("lists", employeeService.findBySelection(selection));
         model.addAttribute("selection", selection);
+
+        System.out.println("EmployeeController /seeSelectedViews: request param = " + request.getParameter("selectColumn"));
+        System.out.println("EmployeeController /seeSelectedViews: request 'selection' = " + selection);
 
         return "functionView";
     }
