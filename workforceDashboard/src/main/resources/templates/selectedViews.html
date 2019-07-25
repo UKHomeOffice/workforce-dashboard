@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <meta charset="UTF-8">
+        <title>Selection</title>
+        <style> table, th, td {
+            border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <h1> Workforce Dashboard</h1>
+        <form name="selectColumn" th:action="@{/seeSelectedViews}" method="POST">
+        <table>
+            <tr>
+                <th colspan="2">How do you want to view the data?</th>
+            </tr>
+            <tr>
+                <td>
+                    <select>
+                        <option disabled selected>Select below to view by a single workforce Function</option>
+                        <option th:each="function : ${functions}"
+                                th:value="${function}"
+                                th:text="${function}">
+                    </select>
+                </td>
+                <td><input name="btnSubmit" type="submit" value="Select this"/></td>
+            </tr>
+        </table>
+        </form>
+        <br><td><a href="/fileUploadStatus">Back</a></td>
+    </body>
+</html>

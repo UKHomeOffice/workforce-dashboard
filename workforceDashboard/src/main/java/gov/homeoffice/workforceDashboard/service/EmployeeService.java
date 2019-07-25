@@ -13,4 +13,9 @@ public interface EmployeeService {
     void excelReader();
 
     List<Employee>findByFunction();
+
+    List<String>fieldSelect();
+
+    List<Employee>findBySelection();
+
 }

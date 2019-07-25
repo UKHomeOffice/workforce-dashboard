@@ -33,7 +33,19 @@ public class EmployeeServiceImpl implements EmployeeService{
         return employeeRepository.findAll();
     }
 
-    public List<Employee> findByFunction() {return employeeRepository.findByFunction();}
+    public List<Employee> findByFunction() {
+        return employeeRepository.findByFunction();
+    }
+
+    public List<String> fieldSelect() {
+        return employeeRepository.fieldSelect();
+    }
+
+//    WS WIP Below line is meant to pass the selected option from selectColumn form
+
+    public List<Employee> findBySelection(String selection) {
+        return employeeRepository.findBySelection(selection);
+    }
 
     @Override
     public void excelReader() {
