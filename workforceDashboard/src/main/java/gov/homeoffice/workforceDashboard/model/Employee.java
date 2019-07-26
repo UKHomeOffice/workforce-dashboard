@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 //WS - Do we need to declare a @Table?
-//@Table(name = "workforce")
+@Table(name = "workforce")
 public class Employee {
     private String roleRef;
     private String roleTitle;

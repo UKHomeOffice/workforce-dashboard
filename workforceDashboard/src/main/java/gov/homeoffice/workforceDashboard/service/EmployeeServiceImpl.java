@@ -33,7 +33,18 @@ public class EmployeeServiceImpl implements EmployeeService{
         return employeeRepository.findAll();
     }
 
-    public List<Employee> findByFunction() {return employeeRepository.findByFunction();}
+    public List<Employee> findByFunction() {
+        return employeeRepository.findByFunction();
+    }
+
+    public List<String> getListOfUniqueFunctions() {
+        return employeeRepository.getListOfUniqueFunctions();
+    }
+
+    public List<Employee> findByUniqueFunction(String selection) {
+        return employeeRepository.findByUniqueFunction(selection);
+    }
+
 
     @Override
     public void excelReader() {

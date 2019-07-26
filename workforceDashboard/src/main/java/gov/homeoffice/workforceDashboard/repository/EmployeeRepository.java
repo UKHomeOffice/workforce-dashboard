@@ -8,8 +8,19 @@ import java.util.Collection;
 import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employee, String> {
-    //  WS - The below is the code to return a sorted list by Function
-    @Query("SELECT a FROM Employee a ORDER BY a.function ASC, a.team ASC, a.employeeFullName ASC")
+
+    @Query("SELECT a FROM Employee a ORDER BY a.function ASC, a.team ASC, a.employeeSurname ASC")
     List<Employee> findByFunction();
+
+    @Query("SELECT DISTINCT f.function FROM Employee f ORDER BY f.function ASC")
+    List<String> getListOfUniqueFunctions();
+
+    @Query("SELECT s FROM Employee s WHERE s.function= ?1 ORDER BY s.employeeSurname ASC")
+    List<Employee> findByUniqueFunction(String selection);
+
 }
+
+
+
+
 
