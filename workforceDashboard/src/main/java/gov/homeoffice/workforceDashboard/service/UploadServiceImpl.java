@@ -2,7 +2,6 @@ package gov.homeoffice.workforceDashboard.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -23,7 +22,6 @@ public class UploadServiceImpl implements UploadService {
             fis = file.getInputStream();
             Files.copy(fis, Paths.get(fileName),
                     StandardCopyOption.REPLACE_EXISTING);
-
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -35,7 +33,6 @@ public class UploadServiceImpl implements UploadService {
             }
         }
     }
-
 
     @Override
     public String getResourceName() {
