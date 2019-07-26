@@ -37,13 +37,12 @@ public class EmployeeServiceImpl implements EmployeeService{
         return employeeRepository.findByFunction();
     }
 
-    public List<String> fieldSelect() {
-        return employeeRepository.fieldSelect();
+    public List<String> getListOfUniqueFunctions() {
+        return employeeRepository.getListOfUniqueFunctions();
     }
 
-    public List<Employee> findBySelection(String selection) {
-        System.out.println("EmployeeServiceImpl findBySelection = " + selection);
-        return employeeRepository.findBySelection(selection);
+    public List<Employee> findByUniqueFunction(String selection) {
+        return employeeRepository.findByUniqueFunction(selection);
     }
 
 

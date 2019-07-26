@@ -18,13 +18,13 @@
             <tr>
                 <td>
                     <select class="form-control" name="selectedOption">
-                        <option disabled selected>Select below to view by a single workforce Function</option>
+                        <option disabled selected>Filter by workforce Function</option>
                         <option th:each="function : ${functions}"
                                 th:value="${function}"
                                 th:text="${function}">
                     </select>
                 </td>
-                <td><input name="btnSubmit" type="submit" value="Select this"/></td>
+                <td><input name="btnSubmit" type="submit" value="Select"/></td>
             </tr>
         </table>
         </form>

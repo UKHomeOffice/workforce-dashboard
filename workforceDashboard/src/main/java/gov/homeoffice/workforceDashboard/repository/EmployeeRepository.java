@@ -13,10 +13,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     List<Employee> findByFunction();
 
     @Query("SELECT DISTINCT f.function FROM Employee f ORDER BY f.function ASC")
-    List<String> fieldSelect();
+    List<String> getListOfUniqueFunctions();
 
     @Query("SELECT s FROM Employee s WHERE s.function= ?1 ORDER BY s.employeeSurname ASC")
-    List<Employee> findBySelection(String selection);
+    List<Employee> findByUniqueFunction(String selection);
 
 }
 

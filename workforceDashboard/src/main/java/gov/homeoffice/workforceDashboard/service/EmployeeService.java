@@ -16,8 +16,8 @@ public interface EmployeeService {
 
     List<Employee>findByFunction();
 
-    List<String>fieldSelect();
+    List<String>getListOfUniqueFunctions();
 
-    List<Employee>findBySelection(String selection);
+    List<Employee>findByUniqueFunction(String selection);
 
 }

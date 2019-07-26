@@ -7,13 +7,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
@@ -96,7 +92,7 @@ public class EmployeeController {
     @GetMapping("/selectedViews")
     public String selectedViews(Model model) {
         employeeService.excelReader();
-        model.addAttribute("functions", employeeService.fieldSelect());
+        model.addAttribute("functions", employeeService.getListOfUniqueFunctions());
         return "selectedViews";
     }
 
@@ -105,7 +101,7 @@ public class EmployeeController {
         String selection = request.getParameter("selectedOption");
         model.addAttribute("selection", selection);
         employeeService.excelReader();
-        model.addAttribute("lists", employeeService.findBySelection(selection));
+        model.addAttribute("lists", employeeService.findByUniqueFunction(selection));
         return "functionView";
     }
 }
