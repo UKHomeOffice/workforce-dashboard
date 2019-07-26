@@ -97,9 +97,13 @@ public class EmployeeController {
     }
 
     @PostMapping("/seeSelectedViews")
-    public String seeSelectedViews (Model model, HttpServletRequest request) {
+    public String seeSelectedViews (Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
         String selection = request.getParameter("selectedOption");
         model.addAttribute("selection", selection);
+        if (selection == null) {
+            redirectAttributes.addFlashAttribute("message", "Please use the dropdown menu above to make a selection.");
+            return "redirect:/selectedViews";
+        }
         employeeService.excelReader();
         model.addAttribute("lists", employeeService.findByUniqueFunction(selection));
         return "functionView";
