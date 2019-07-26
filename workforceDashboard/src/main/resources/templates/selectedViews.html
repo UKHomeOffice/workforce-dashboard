@@ -18,7 +18,7 @@
             <tr>
                 <td>
                     <select class="form-control" name="selectedOption">
-                        <option disabled selected>Filter by workforce Function</option>
+                        <option disabled selected value="promptText">Filter by workforce Function...</option>
                         <option th:each="function : ${functions}"
                                 th:value="${function}"
                                 th:text="${function}">
@@ -29,5 +29,8 @@
         </table>
         </form>
         <br><td><a href="/fileUploadStatus">Back</a></td>
+        <div th:if="${message}">
+            <h2 th:text="${message}"/>
+        </div>
      </body>
 </html>
