@@ -12,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 public class EmployeeController {
@@ -99,7 +98,6 @@ public class EmployeeController {
     public String selectedViews(Model model) {
         employeeService.excelReader();
         model.addAttribute("functions", employeeService.fieldSelect());
-        System.out.println(">>>>> Controller logger output for /selectedViews: " + model.toString());
         return "selectedViews";
     }
 
