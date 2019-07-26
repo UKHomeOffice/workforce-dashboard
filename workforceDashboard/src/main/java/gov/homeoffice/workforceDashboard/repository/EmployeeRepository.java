@@ -15,8 +15,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     @Query("SELECT DISTINCT f.function FROM Employee f ORDER BY f.function ASC")
     List<String> fieldSelect();
 
-
-//    WS WIP - The below will read into the query the form output from selectColumn
     @Query("SELECT s FROM Employee s WHERE s.function= ?1 ORDER BY s.employeeSurname ASC")
     List<Employee> findBySelection(String selection);
 

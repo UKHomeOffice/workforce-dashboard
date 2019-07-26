@@ -10,14 +10,14 @@
     </head>
     <body>
         <h1> Workforce Dashboard</h1>
-        <form name="selectColumn" th:action="@{/seeSelectedViews}" method="POST">
+        <form role="form" name="selectForm" th:action="@{/seeSelectedViews}" method="POST">
         <table>
             <tr>
                 <th colspan="2">How do you want to view the data?</th>
             </tr>
             <tr>
                 <td>
-                    <select>
+                    <select class="form-control" name="selectedOption">
                         <option disabled selected>Select below to view by a single workforce Function</option>
                         <option th:each="function : ${functions}"
                                 th:value="${function}"
@@ -29,5 +29,5 @@
         </table>
         </form>
         <br><td><a href="/fileUploadStatus">Back</a></td>
-    </body>
+     </body>
 </html>

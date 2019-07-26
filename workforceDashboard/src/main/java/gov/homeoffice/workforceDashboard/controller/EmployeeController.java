@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class EmployeeController {
@@ -94,9 +95,6 @@ public class EmployeeController {
         return "functionView";
     }
 
-
-//    WS WIP below here
-
     @GetMapping("/selectedViews")
     public String selectedViews(Model model) {
         employeeService.excelReader();
@@ -105,22 +103,12 @@ public class EmployeeController {
         return "selectedViews";
     }
 
-
-//    WS WIP - The below is meant to receive the selection from the selectColumn form in selectedViews.html and send
-//    it to the findBySelection query in EmployeeRepository.java
     @PostMapping("/seeSelectedViews")
-    public String selection (Model model, HttpServletRequest request) {
-
-        String selection = request.getParameter("selectColumn");
-
-        model.addAttribute("lists", employeeService.findBySelection(selection));
+    public String seeSelectedViews (Model model, HttpServletRequest request) {
+        String selection = request.getParameter("selectedOption");
         model.addAttribute("selection", selection);
-
-        System.out.println("EmployeeController /seeSelectedViews: request param = " + request.getParameter("selectColumn"));
-        System.out.println("EmployeeController /seeSelectedViews: request 'selection' = " + selection);
-
+        employeeService.excelReader();
+        model.addAttribute("lists", employeeService.findBySelection(selection));
         return "functionView";
     }
-
-
 }
